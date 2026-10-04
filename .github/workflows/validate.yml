@@ -1,0 +1,106 @@
+name: Valideer marketplace
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Valideer marketplace.json
+        run: |
+          python3 << 'SCRIPT'
+          import json, sys
+
+          with open('marketplace.json') as f:
+              data = json.load(f)
+
+          errors = []
+
+          for field in ['name', 'owner', 'plugins']:
+              if field not in data:
+                  errors.append(f"Verplicht veld '{field}' ontbreekt")
+
+          if 'owner' in data and 'name' not in data['owner']:
+              errors.append("Verplicht veld 'owner.name' ontbreekt")
+
+          names = []
+          for i, plugin in enumerate(data.get('plugins', [])):
+              prefix = f"plugins[{i}]"
+              if 'name' not in plugin:
+                  errors.append(f"{prefix}: 'name' ontbreekt")
+              else:
+                  if plugin['name'] in names:
+                      errors.append(f"{prefix}: dubbele plugin-naam '{plugin['name']}'")
+                  names.append(plugin['name'])
+              if 'source' not in plugin:
+                  errors.append(f"{prefix}: 'source' ontbreekt")
+              # The plugin's own manifest is the only source for its version.
+              # A copy here goes stale with every release of the plugin.
+              if 'version' in plugin:
+                  errors.append(f"{prefix}: 'version' hoort in het manifest van de plugin, niet hier")
+
+          if errors:
+              for e in errors:
+                  print(f"FOUT: {e}")
+              sys.exit(1)
+
+          print(f"Marketplace '{data['name']}' is geldig ({len(data['plugins'])} plugins)")
+          SCRIPT
+
+      - name: Controleer of de gegenereerde bestanden in sync zijn
+        run: python3 .github/scripts/generate_marketplace.py --check
+
+      - name: Test de generator
+        run: |
+          python3 -m pip install --quiet pytest
+          python3 -m pytest .github/scripts
+
+      - name: Controleer of elke plugin-repo een manifest heeft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 << 'SCRIPT'
+          import json, subprocess, sys
+
+          with open('marketplace.json') as f:
+              data = json.load(f)
+
+          MANIFEST_PATHS = ['.claude-plugin/plugin.json', '.cursor-plugin/plugin.json']
+
+          errors = []
+          for plugin in data.get('plugins', []):
+              source = plugin.get('source', {})
+              if not (isinstance(source, dict) and source.get('source') == 'github'):
+                  print(f"SKIP: {plugin['name']} heeft geen GitHub-bron, controleer handmatig")
+                  continue
+              repo = source['repo']
+
+              found = []
+              for path in MANIFEST_PATHS:
+                  result = subprocess.run(
+                      ['gh', 'api', f'repos/{repo}/contents/{path}', '--jq', '.name'],
+                      capture_output=True, text=True
+                  )
+                  if result.returncode == 0:
+                      found.append(path)
+
+              if not found:
+                  errors.append(f"{plugin['name']}: geen manifest gevonden in {repo}")
+              else:
+                  print(f"OK: {plugin['name']} -> {repo} ({', '.join(found)})")
+
+          if errors:
+              for e in errors:
+                  print(f"FOUT: {e}")
+              sys.exit(1)
+          SCRIPT

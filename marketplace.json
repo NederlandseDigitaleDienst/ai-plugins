@@ -1,0 +1,32 @@
+{
+  "name": "nldd",
+  "metadata": {
+    "description": "Plugins van de Nederlandse Digitale Dienst voor AI-assistenten"
+  },
+  "owner": {
+    "name": "Nederlandse Digitale Dienst"
+  },
+  "plugins": [
+    {
+      "name": "nldd-design-system",
+      "displayName": "NLDD Designsysteem",
+      "description": "Bouw applicaties met het NLDD Designsysteem (@nldd/design-system). Vijf skills: nldd-design om componenten, attributen, iconen en releases op te zoeken, nldd-design-build om een applicatie te bouwen, nldd-design-migrate om een bestaande frontend om te zetten, nldd-design-upgrade om een versie te verhogen, en nldd-design-contribute om een wijziging voor te stellen.",
+      "author": {
+        "name": "Nederlandse Digitale Dienst"
+      },
+      "source": {
+        "source": "github",
+        "repo": "NederlandseDigitaleDienst/design-system"
+      },
+      "category": "productivity",
+      "tags": [
+        "overheid",
+        "design-system",
+        "web-components",
+        "frontend",
+        "toegankelijkheid",
+        "rijksoverheid"
+      ]
+    }
+  ]
+}
