@@ -35,6 +35,8 @@ Wil je dat iedereen in een project de plugin krijgt, zet hem dan in `.claude/set
 
 Importeer de marketplace via **Dashboard → Settings → Plugins → Import** met de repository `NederlandseDigitaleDienst/ai-plugins`.
 
+Deze route is in Claude Code gemeten en in Cursor nog niet. Loopt hij bij jou anders, meld het dan in een [issue](https://github.com/NederlandseDigitaleDienst/ai-plugins/issues).
+
 ## Plugins
 
 | Plugin | Wat hij doet | Repository |
