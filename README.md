@@ -66,6 +66,7 @@ marketplace.json              de lijst, in een formaat dat aan geen tool vastzit
   marketplace.json            gegenereerd, voor Cursor
 .github/scripts/
   generate_marketplace.py     de generator, met tests ernaast
+publiccode.yml                metadata voor de catalogus op developer.overheid.nl
 ```
 
 ```
