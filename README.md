@@ -42,6 +42,7 @@ Deze route is in Claude Code gemeten en in Cursor nog niet. Loopt hij bij jou an
 | Plugin | Wat hij doet | Repository |
 |--------|--------------|------------|
 | `nldd-design-system` | Bouwen met de web components van het NLDD Designsysteem (`@nldd/design-system`): de componentreferentie, de patronen, migreren, een versie verhogen en een wijziging voorstellen. | [design-system](https://github.com/NederlandseDigitaleDienst/design-system) |
+| `nldd-archi` | Werken aan native ArchiMate-modellen met de archi-CLI: het model wijzigen, views genereren en presentaties maken. Vereist `archi-cli`. | [ai-assisted-architecting](https://github.com/NederlandseDigitaleDienst/ai-assisted-architecting) |
 
 ## Had je `nldd@nldd-plugins`?
 
