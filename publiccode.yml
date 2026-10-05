@@ -42,11 +42,13 @@ description:
 
 legal:
   license: EUPL-1.2
+  mainCopyrightOwner: Nederlandse Digitale Dienst
 
 maintenance:
   type: internal
   contacts:
     - name: Nederlandse Digitale Dienst
+      email: opensource@minbzk.nl
 
 localisation:
   localisationReady: false
@@ -56,3 +58,5 @@ localisation:
 intendedAudience:
   countries:
     - NL
+  scope:
+    - government

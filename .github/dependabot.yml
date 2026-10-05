@@ -1,0 +1,15 @@
+version: 2
+
+# The workflow actions are the only dependencies here. They are pinned to a
+# commit SHA, so a repointed tag cannot change what runs; Dependabot moves the
+# pin. The cooldown keeps a release out until it is five days old. Security
+# updates are exempt from it and open immediately.
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 5
+    commit-message:
+      prefix: ci
