@@ -31,13 +31,12 @@ def load_source() -> dict:
 def generate_claude(data: dict) -> dict:
     """Generate Claude Code marketplace.json.
 
-    Adds $schema and copies all fields, except the ones only another
-    platform reads (displayName is a Cursor field).
+    Adds $schema and copies all fields. displayName stays in: Claude Code
+    shows it in place of the kebab-case name, and the entry's value wins
+    over the one in the plugin's own manifest.
     """
     result = {"$schema": CLAUDE_SCHEMA}
     result.update(copy.deepcopy(data))
-    for plugin in result.get("plugins", []):
-        plugin.pop("displayName", None)
     return result
 
 

@@ -56,11 +56,10 @@ class TestGenerateClaude:
         result = generate_claude(SAMPLE_DATA)
         assert result["$schema"] == CLAUDE_SCHEMA
 
-    def test_drops_display_name(self):
-        data = {**SAMPLE_DATA, "plugins": [{**SAMPLE_PLUGIN, "displayName": "My Plugin"}]}
+    def test_keeps_display_name(self):
+        data = {**SAMPLE_DATA, "plugins": [{**SAMPLE_PLUGIN, "displayName": "NLDD Plugin"}]}
         result = generate_claude(data)
-        assert "displayName" not in result["plugins"][0]
-        assert "displayName" in data["plugins"][0]
+        assert result["plugins"][0]["displayName"] == "NLDD Plugin"
 
     def test_preserves_all_fields(self):
         result = generate_claude(SAMPLE_DATA)

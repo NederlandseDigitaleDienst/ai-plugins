@@ -1,0 +1,20 @@
+NLDD plugins voor AI-assistenten
+Copyright (c) 2026 Nederlandse Digitale Dienst
+Licensed under the EUPL-1.2 (see LICENSE).
+
+The layout of this repository, the generator in
+.github/scripts/generate_marketplace.py, its tests and the validation workflow
+are derived from the marketplace of developer.overheid.nl:
+
+  developer-overheid-nl/skills-marketplace
+  Copyright (c) Geonovum
+  Licensed under the EUPL-1.2
+  https://github.com/developer-overheid-nl/skills-marketplace
+
+The plugins listed in marketplace.json are separate works. Each lives in its
+own repository under its own licence and is not distributed as part of this
+one.
+
+CODE_OF_CONDUCT.md is a Dutch translation of the Contributor Covenant 3.0 and
+is licensed under CC BY-SA 4.0, not under the EUPL-1.2. See the attribution at
+the end of that file.

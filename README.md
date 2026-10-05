@@ -84,6 +84,16 @@ Een entry heeft geen `version`. De versie staat in het manifest van de plugin ze
 
 Zie [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Generatieve AI
+
+Een plugin stuurt een AI-assistent, en wat die assistent daarna maakt blijft werk dat een mens nakijkt. Zet je generatieve AI in binnen de overheid, dan geldt het [overheidsbrede standpunt voor de inzet van generatieve AI](https://open.overheid.nl/documenten/bc03ce31-0cf1-4946-9c94-e934a62ebe73/file), naast het beleid van je eigen organisatie.
+
+## Meedoen en melden
+
+- Een plugin toevoegen of iets voorstellen: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Een kwetsbaarheid melden: [SECURITY.md](SECURITY.md)
+- Hoe we met elkaar omgaan: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+
 ## Herkomst en licentie
 
-De opzet en de generator komen uit [developer-overheid-nl/skills-marketplace](https://github.com/developer-overheid-nl/skills-marketplace), de marketplace van developer.overheid.nl. Alles hier valt onder de [EUPL-1.2](LICENSE).
+De opzet en de generator komen uit [developer-overheid-nl/skills-marketplace](https://github.com/developer-overheid-nl/skills-marketplace), de marketplace van developer.overheid.nl. Alles hier valt onder de [EUPL-1.2](LICENSE), op de gedragscode na. De bronvermelding staat in [NOTICE](NOTICE).
