@@ -27,6 +27,26 @@
         "toegankelijkheid",
         "rijksoverheid"
       ]
+    },
+    {
+      "name": "nldd-archi",
+      "displayName": "NLDD Archi",
+      "description": "Werk aan native ArchiMate-modellen (.archimate) met de archi-CLI. Drie skills: nldd-archi-model om het model te wijzigen, nldd-archi-view om views te genereren en nldd-archi-slides om presentaties te maken. Vereist archi-cli (uv tool install archi-cli).",
+      "author": {
+        "name": "Nederlandse Digitale Dienst"
+      },
+      "source": {
+        "source": "github",
+        "repo": "NederlandseDigitaleDienst/ai-assisted-architecting"
+      },
+      "category": "productivity",
+      "tags": [
+        "overheid",
+        "architectuur",
+        "archimate",
+        "enterprise-architecture",
+        "rijksoverheid"
+      ]
     }
   ]
 }
