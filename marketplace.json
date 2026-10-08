@@ -1,5 +1,6 @@
 {
   "name": "nldd",
+  "displayName": "NLDD",
   "metadata": {
     "description": "Plugins van de Nederlandse Digitale Dienst voor AI-assistenten"
   },

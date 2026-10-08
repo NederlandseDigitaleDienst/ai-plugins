@@ -3,7 +3,7 @@
 [![EUPL-1.2](https://img.shields.io/badge/licentie-EUPL--1.2-blue.svg)](LICENSE)
 [![CI](https://github.com/NederlandseDigitaleDienst/ai-plugins/actions/workflows/validate.yml/badge.svg)](https://github.com/NederlandseDigitaleDienst/ai-plugins/actions/workflows/validate.yml)
 
-De marketplace van de Nederlandse Digitale Dienst: plugins die een AI-assistent leren werken met wat NLDD maakt. De plugins zelf staan elk in hun eigen repository, hier staat alleen de lijst. Die lijst is er voor [Claude Code](https://code.claude.com/docs) en voor [Cursor](https://cursor.com/docs/plugins).
+De marketplace van de Nederlandse Digitale Dienst: plugins die een AI-assistent leren werken met wat NLDD maakt. De plugins zelf staan elk in hun eigen repository, hier staat alleen de lijst. Die lijst is er voor [Claude Code](https://code.claude.com/docs), [Codex](https://developers.openai.com/codex) en [Cursor](https://cursor.com/docs/plugins).
 
 ## Installeren
 
@@ -31,11 +31,27 @@ Wil je dat iedereen in een project de plugin krijgt, zet hem dan in `.claude/set
 }
 ```
 
+### Codex
+
+```
+codex plugin marketplace add NederlandseDigitaleDienst/ai-plugins
+codex plugin add nldd-design-system@nldd
+```
+
+Start daarna een nieuwe sessie, want Codex laadt de skills bij het opstarten.
+
+Codex werkt een plugin niet zelf bij. Haal eerst de lijst opnieuw op en installeer de plugin er dan overheen:
+
+```
+codex plugin marketplace upgrade nldd
+codex plugin add nldd-design-system@nldd
+```
+
 ### Cursor
 
 Importeer de marketplace via **Dashboard → Settings → Plugins → Import** met de repository `NederlandseDigitaleDienst/ai-plugins`.
 
-Deze route is in Claude Code gemeten en in Cursor nog niet. Loopt hij bij jou anders, meld het dan in een [issue](https://github.com/NederlandseDigitaleDienst/ai-plugins/issues).
+De routes voor Claude Code en Codex zijn gemeten, die voor Cursor nog niet. Loopt hij bij jou anders, meld het dan in een [issue](https://github.com/NederlandseDigitaleDienst/ai-plugins/issues).
 
 ## Plugins
 
@@ -65,6 +81,8 @@ marketplace.json              de lijst, in een formaat dat aan geen tool vastzit
   marketplace.json            gegenereerd, voor Claude Code
 .cursor-plugin/
   marketplace.json            gegenereerd, voor Cursor
+.agents/plugins/
+  marketplace.json            gegenereerd, voor Codex
 .github/scripts/
   generate_marketplace.py     de generator, met tests ernaast
 publiccode.yml                metadata voor de catalogus op developer.overheid.nl
@@ -77,6 +95,8 @@ just test        # test de generator
 ```
 
 CI draait `check` en de tests bij elke pull request. Een tool erbij is een functie `generate_<tool>()` in het script en een regel in `PLATFORMS`.
+
+Codex krijgt een eigen bestand. Het leest `.agents/plugins/marketplace.json` eerst en valt anders terug op het bestand van Claude Code, waar elke plugin het source-type `github` heeft. Dat type kent Codex niet, en zo'n entry slaat het zonder melding over: de marketplace lijkt dan leeg. In het Codex-bestand staan daarom clone-URL's, met de velden `policy` en `category` die Codex verwacht. CI weigert een source-type dat Codex stil negeert.
 
 Een entry heeft geen `version`. De versie staat in het manifest van de plugin zelf, en een kopie hier zou bij elke release van die plugin verouderen. CI weigert een entry die er toch een heeft.
 
