@@ -6,12 +6,12 @@ Deze marketplace is voor plugins van de Nederlandse Digitale Dienst. Een plugin 
 
 - Een eigen, openbare repository onder een open licentie (EUPL-1.2 of vergelijkbaar).
 - Een manifest per tool: `.claude-plugin/plugin.json` voor Claude Code en `.cursor-plugin/plugin.json` voor Cursor, met dezelfde `name`, `description` en `version`.
-- Skills in `skills/<naam>/SKILL.md` in de root. Die map lezen beide tools zonder dat je hem in het manifest noemt.
+- Skills in `skills/<naam>/SKILL.md` in de root. Die map lezen alle drie de tools zonder dat je hem in het manifest noemt. Een `SKILL.md` los in de root vindt Codex niet, en de plugin installeert dan met nul skills.
 - Een versie die bij elke wijziging van de inhoud omhoog gaat. Claude Code bewaart een plugin per versie: blijft het nummer gelijk, dan halen gebruikers de nieuwe inhoud niet op.
 
 ## De naam
 
-De `name` in het manifest wordt het voorvoegsel van elke skill (`/nldd-design-system:nldd-design`), en de naam van de entry hier wordt het deel voor de `@` bij installeren (`nldd-design-system@nldd`). Houd die twee gelijk. Begin met `nldd-` en zeg daarna waar de plugin over gaat.
+De `name` in het manifest wordt het voorvoegsel van elke skill (`/nldd-design-system:nldd-design`), en de naam van de entry hier wordt het deel voor de `@` bij installeren (`nldd-design-system@nldd`). Houd die twee gelijk: Codex weigert de installatie als ze verschillen. Begin met `nldd-` en zeg daarna waar de plugin over gaat.
 
 Geef de entry ook een `displayName`, zoals `NLDD Designsysteem`. Dat is de naam die mensen in de interface zien. Zonder dat veld maakt de interface er zelf een van de `name`, en dan staat er `Nldd` waar `NLDD` hoort. CI weigert een entry zonder.
 

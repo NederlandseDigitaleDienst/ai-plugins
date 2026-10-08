@@ -2,7 +2,8 @@
 """Generate platform-specific marketplace files from the neutral root format.
 
 The root marketplace.json is the single source of truth. This script generates
-platform-specific variants for Claude Code and Cursor (and future platforms).
+platform-specific variants for Claude Code, Cursor and Codex (and future
+platforms).
 
 Usage:
     python generate_marketplace.py          # generate all platform files
@@ -18,6 +19,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 SOURCE_PATH = ROOT_DIR / "marketplace.json"
 CLAUDE_PATH = ROOT_DIR / ".claude-plugin" / "marketplace.json"
 CURSOR_PATH = ROOT_DIR / ".cursor-plugin" / "marketplace.json"
+CODEX_PATH = ROOT_DIR / ".agents" / "plugins" / "marketplace.json"
 
 CLAUDE_SCHEMA = "https://anthropic.com/claude-code/marketplace.schema.json"
 
@@ -33,10 +35,12 @@ def generate_claude(data: dict) -> dict:
 
     Adds $schema and copies all fields. displayName stays in: Claude Code
     shows it in place of the kebab-case name, and the entry's value wins
-    over the one in the plugin's own manifest.
+    over the one in the plugin's own manifest. The marketplace's own
+    displayName goes: Claude Code has no such field at the top level.
     """
     result = {"$schema": CLAUDE_SCHEMA}
     result.update(copy.deepcopy(data))
+    result.pop("displayName", None)
     return result
 
 
@@ -103,10 +107,62 @@ def generate_cursor(data: dict) -> dict:
     return result
 
 
+def _codex_source(source: dict) -> dict:
+    """Transform a plugin source to a type Codex understands.
+
+    Codex has no "github" source type and silently skips any entry using one,
+    so a GitHub repo becomes a plain clone URL. Other source types pass through
+    unchanged.
+    """
+    if not isinstance(source, dict) or source.get("source") != "github":
+        return copy.deepcopy(source)
+
+    codex_source = {
+        "source": "url",
+        "url": f"https://github.com/{source.get('repo', '')}.git",
+    }
+    for key in ("ref", "sha"):
+        if key in source:
+            codex_source[key] = source[key]
+    return codex_source
+
+
+def _transform_plugin_for_codex(plugin: dict) -> dict:
+    """Transform a single plugin entry to Codex format."""
+    codex_plugin: dict = {"name": plugin["name"]}
+
+    if "description" in plugin:
+        codex_plugin["description"] = plugin["description"]
+
+    codex_plugin["source"] = _codex_source(plugin.get("source", {}))
+    codex_plugin["policy"] = {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+    }
+    codex_plugin["category"] = plugin.get("category", "productivity").capitalize()
+
+    return codex_plugin
+
+
+def generate_codex(data: dict) -> dict:
+    """Generate the Codex marketplace.json.
+
+    Codex reads .agents/plugins/marketplace.json before the Claude Code file,
+    and needs url sources plus a policy and category per plugin.
+    """
+    name = data.get("name", "")
+    return {
+        "name": name,
+        "interface": {"displayName": data.get("displayName") or _display_name(name)},
+        "plugins": [_transform_plugin_for_codex(p) for p in data.get("plugins", [])],
+    }
+
+
 # Registry of platform generators — add new platforms here
 PLATFORMS: dict[str, tuple[Path, callable]] = {
     "claude": (CLAUDE_PATH, generate_claude),
     "cursor": (CURSOR_PATH, generate_cursor),
+    "codex": (CODEX_PATH, generate_codex),
 }
 
 

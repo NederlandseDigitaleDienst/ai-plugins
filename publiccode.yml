@@ -21,7 +21,7 @@ description:
   nl:
     shortDescription: >-
       Marketplace van de Nederlandse Digitale Dienst met plugins voor
-      AI-assistenten zoals Claude Code en Cursor.
+      AI-assistenten zoals Claude Code, Codex en Cursor.
     longDescription: >-
       Deze repository is de marketplace van de Nederlandse Digitale Dienst:
       een lijst van plugins die een AI-assistent leren werken met wat NLDD
@@ -31,12 +31,12 @@ description:
       en de werkwijze voor migreren en upgraden.
 
       De lijst staat in een formaat dat aan geen tool vastzit. Een script
-      maakt daaruit de bestanden die Claude Code en Cursor verwachten, en een
+      maakt daaruit de bestanden die Claude Code, Codex en Cursor verwachten, en een
       controle bij elke wijziging bewaakt dat die bestanden bij de bron
       passen. Een tool erbij is een functie in dat script. De opzet komt uit
       de marketplace van developer.overheid.nl.
     features:
-      - Plugins voor Claude Code en Cursor uit één bronbestand
+      - Plugins voor Claude Code, Codex en Cursor uit één bronbestand
       - Plugin voor het NLDD Designsysteem
       - Geautomatiseerde validatie van de lijst
 
