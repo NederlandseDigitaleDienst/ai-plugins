@@ -58,7 +58,8 @@
       },
       "source": {
         "source": "github",
-        "repo": "NederlandseDigitaleDienst/loep"
+        "repo": "NederlandseDigitaleDienst/loep",
+        "ref": "v0.1.0"
       },
       "category": "productivity",
       "tags": [
