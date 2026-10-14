@@ -32,7 +32,7 @@
     },
     {
       "name": "nldd-a11y",
-      "description": "loep maakt een toegankelijkheidsonderzoek van een website (WCAG 2.2 en 2.1, niveau A en AA, WCAG-EM) en de toegankelijkheidsverklaring die erop steunt. Drie skills: nldd-a11y wijst de weg, nldd-a11y-audit maakt het onderzoek (scripts meten, agents beoordelen elk criterium met meetinstrumenten en maken elke bevinding opnieuw vanaf een verse pagina, een mens tekent) en nldd-a11y-statement maakt van een getekend onderzoek de verklaring. Vereist Node en just; zie de README.",
+      "description": "Experimenteel. loep maakt een toegankelijkheidsonderzoek van een website (WCAG 2.2 en 2.1, niveau A en AA, WCAG-EM) en de toegankelijkheidsverklaring die erop steunt. Drie skills: nldd-a11y wijst de weg, nldd-a11y-audit maakt het onderzoek (scripts meten, agents beoordelen elk criterium met meetinstrumenten en maken elke bevinding opnieuw vanaf een verse pagina, een mens tekent) en nldd-a11y-statement maakt van een getekend onderzoek de verklaring. Vereist Node en just; zie de README.",
       "source": {
         "source": "url",
         "url": "https://github.com/NederlandseDigitaleDienst/loep.git"
