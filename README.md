@@ -59,6 +59,7 @@ De routes voor Claude Code en Codex zijn gemeten, die voor Cursor nog niet. Loop
 |--------|--------------|------------|
 | `nldd-design-system` | Bouwen met de web components van het NLDD Designsysteem (`@nldd/design-system`): de componentreferentie, de patronen, migreren, een versie verhogen en een wijziging voorstellen. | [design-system](https://github.com/NederlandseDigitaleDienst/design-system) |
 | `nldd-archi` | Werken aan native ArchiMate-modellen met de archi-CLI: het model wijzigen, views genereren en presentaties maken. Vereist `archi-cli`. | [ai-assisted-architecting](https://github.com/NederlandseDigitaleDienst/ai-assisted-architecting) |
+| `nldd-a11y` | Een toegankelijkheidsonderzoek van een website volgens WCAG-EM (WCAG 2.2 en 2.1, niveau A en AA) en de toegankelijkheidsverklaring die erop steunt. Scripts meten, agents beoordelen, een mens tekent. Vereist Node en `just`. | [loep](https://github.com/NederlandseDigitaleDienst/loep) |
 
 ## Had je `nldd@nldd-plugins`?
 
