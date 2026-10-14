@@ -2,6 +2,7 @@
 
 [![EUPL-1.2](https://img.shields.io/badge/licentie-EUPL--1.2-blue.svg)](LICENSE)
 [![CI](https://github.com/NederlandseDigitaleDienst/ai-plugins/actions/workflows/validate.yml/badge.svg)](https://github.com/NederlandseDigitaleDienst/ai-plugins/actions/workflows/validate.yml)
+[![status: experimenteel](https://img.shields.io/badge/status-experimenteel-orange.svg)](#nldd-plugins-voor-ai-assistenten)
 
 De marketplace van de Nederlandse Digitale Dienst: plugins die een AI-assistent leren werken met wat NLDD maakt. De plugins zelf staan elk in hun eigen repository, hier staat alleen de lijst. Die lijst is er voor [Claude Code](https://code.claude.com/docs), [Codex](https://developers.openai.com/codex) en [Cursor](https://cursor.com/docs/plugins).
 
