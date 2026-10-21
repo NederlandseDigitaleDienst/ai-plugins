@@ -61,7 +61,7 @@
       "source": {
         "source": "github",
         "repo": "NederlandseDigitaleDienst/loep",
-        "ref": "v0.14.1"
+        "ref": "v0.15.0"
       },
       "repository": "https://github.com/NederlandseDigitaleDienst/loep",
       "keywords": [
